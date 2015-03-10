@@ -59,7 +59,7 @@ public class FileUtils {
 			File tempList[] = dir.listFiles();
 			String nameFile;
 			if (tempList == null) {
-				MessageUtils.warm("No se encontraron archivos en el directorio.");
+				MessageUtils.warm("NO SE ENCONTRARON ARCHIVOS EN EL DIRECTORIO.");
 			} else {
 				if (filter != "") {
 					for (File path : tempList) {

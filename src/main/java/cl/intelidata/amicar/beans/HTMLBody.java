@@ -123,7 +123,7 @@ public class HTMLBody {
 			this.setDirJrn(path);
 
 			if (list == null) {
-				System.out.println("No hay ficheros en el directorio especificado");
+				System.out.println("NO HAY ARCHIVOS EN EL DIRECTORIO ESPECIFICADO");
 			} else {
 				this.setListFiles(new ArrayList<String>(list));
 				for (String file : this.getListFiles()) {
@@ -149,7 +149,7 @@ public class HTMLBody {
 		int template = this.getTemplate();
 		if (template != 0) {
 			if (!this.generateBody(in, template)) {
-				MessageUtils.error("No se logró generar el archivo: ".concat(in));
+				MessageUtils.error("NO SE LOGRÓ GENERAR EL ARCHIVO: ".concat(in));
 			}
 		}
 
@@ -188,7 +188,6 @@ public class HTMLBody {
 	}
 
 	private String getUrlReadServlet(String line) {
-		String l = "";
 		String[] array = line.split(Text.SERVLET_1);
 		String[] array2 = null;
 		for (int i = 0; i < array.length; i++) {
@@ -200,16 +199,14 @@ public class HTMLBody {
 	}
 
 	private String getUrlButtonClick(String line) {
-		String linea = "";
 		String[] array = line.split(Text.F_LINK);
 		String[] array2 = array[0].split("title=\"");
-		linea = array2[1].split("\">")[0];
 
-		return linea;
+		return array2[1].split("\">")[0];
 	}
 
 	public int getTemplate() {
-		int template = 1;
+		int template = 0;
 
 		List<String> data = this.getJrnData();
 		Clientes c = new Clientes();
@@ -315,7 +312,8 @@ public class HTMLBody {
 					tpl.add(line);
 				}
 			}
-			MessageUtils.debug(tpl.toString());
+//			MessageUtils.debug(tpl.toString());
+			MessageUtils.info("PROCESANDO PLANTILLA PARA ARCHIVO: " + fileName);
 
 			ffr.close();
 		} catch (IOException e) {
