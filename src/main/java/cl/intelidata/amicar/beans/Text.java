@@ -29,13 +29,14 @@ public interface Text {
 	public static final String ID_FINAL       = "<AccNo>";
 
 	// FIXES
-	public static final String IMAGE       = "<img src=\"";
-	public static final String IMAGE_FINAL = "\">";
-	public static final String SERVLET_1   = "title=\"";
-	public static final String SERVLET_2   = "\">IMAGEN";
-	public static final String F_LINK      = "LINK";
-	public static final String F_IMAGE     = "IMAGEN";
-	public static final String F_BUTTON    = "<a id=\"buttonLink\"";
+	public static final String IMAGE          = "<img src=\"";
+	public static final String IMAGE_FINAL    = "\">";
+	public static final String SERVLET_1      = "title=\"";
+	public static final String SERVLET_2      = "\">IMAGEN";
+	public static final String F_LINK         = "LINK";
+	public static final String F_IMAGE        = "IMAGEN";
+	public static final String F_BUTTON_COTIZ = "<a id=\"buttonLink\"";
+	public static final String F_BUTTON_DESIN = "<span id=\"buttonDesinscrito\"";
 
 	// OTHERS
 	public static final String COMMENT       = "<!--";

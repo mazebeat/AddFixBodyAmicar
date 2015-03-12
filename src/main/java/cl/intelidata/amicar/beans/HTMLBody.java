@@ -1,6 +1,6 @@
 package cl.intelidata.amicar.beans;
 
-import cl.intelidata.amicar.dao.Clientes;
+import cl.intelidata.amicar.bd.Clientes;
 import org.jam.superutils.FastFileTextReader;
 import org.jdom.Content;
 import org.jdom.Document;
@@ -205,18 +205,31 @@ public class HTMLBody {
 		return array2[1].split("\">")[0];
 	}
 
+	/**
+	 * @return int
+	 */
 	public int getTemplate() {
-		int template = 0;
+		int template = 1;
 
-		List<String> data = this.getJrnData();
-		Clientes c = new Clientes();
-		Clientes result = c.findByRutAndMail(data.get(1), data.get(2));
-		if (result != null) {
-			template = result.getIdBody();
+		try {
+			List<String> data = this.getJrnData();
+
+			cl.intelidata.amicar.db.ConsultasDB consultasDB = new cl.intelidata.amicar.db.ConsultasDB();
+			Clientes result = consultasDB.returnCliente(data.get(1), data.get(2));
+
+			if (result != null) {
+				template = result.getIdBody();
+			}
+		} catch (Exception e) {
+			MessageUtils.error(e.getMessage());
 		}
+
 		return template;
 	}
 
+	/**
+	 * @return List<String>
+	 */
 	public List<String> getJrnData() {
 		List<String> data = new ArrayList<String>();
 		Content content;
@@ -256,6 +269,14 @@ public class HTMLBody {
 		return data;
 	}
 
+	/**
+	 * @param in       String
+	 * @param template int
+	 *
+	 * @return Boolean
+	 *
+	 * @throws IOException
+	 */
 	public Boolean generateBody(String in, int template) throws IOException {
 		FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.UTF_8, 1024 * 40);
 		List<String> tpl = new ArrayList<String>();
@@ -288,31 +309,70 @@ public class HTMLBody {
 		return false;
 	}
 
+	/**
+	 * @param line String
+	 *
+	 * @return String
+	 */
 	public String addButton(String line) {
 		String[] btn = line.split("#");
 		String b = btn[0].concat(this.getUrlClick()).concat(btn[1]);
 		return b;
 	}
 
+	/**
+	 * @param line String
+	 *
+	 * @return String
+	 */
+	public String addButtonDesin(String line) {
+		String site = cl.intelidata.conf.Configuracion.getInstance().getInitParameter("dominioDesinscrito");
+		String[] url = this.getUrlClick().trim().split("\\?");
+		String[] btn = line.split("#");
+
+		if (!site.trim().endsWith("?")) {
+			site = site.trim().concat("?");
+		}
+
+		site = site.concat(url[1]);
+
+		String b = btn[0].concat(site).concat(btn[1]);
+
+		return b;
+	}
+
+	/**
+	 * @return String
+	 */
 	public String addReadServlet() {
 		return Text.IMAGE + this.getUrlRead() + Text.IMAGE_FINAL;
 	}
 
+	/**
+	 * @param template int
+	 *
+	 * @return List<String>
+	 *
+	 * @throws IOException
+	 */
 	public List<String> getBodyContent(int template) throws IOException {
 		String fileName = this.getDirTpl().concat(File.separator).concat(Text.PREFIX_TPL).concat(String.valueOf(template)).concat(Text.HTML_EXT);
 		List<String> tpl = new ArrayList<String>();
 		try {
 			FastFileTextReader ffr = new FastFileTextReader(fileName, FastFileTextReader.UTF_8, 1024 * 40);
 			String line;
+
 			while ((line = ffr.readLine()) != null) {
-				if (line.trim().startsWith(Text.F_BUTTON)) {
-					String button = this.addButton(line);
-					tpl.add(button);
+				if (line.trim().startsWith(Text.F_BUTTON_COTIZ)) {
+					tpl.add(this.addButton(line));
+				}
+				else if (line.trim().startsWith(Text.F_BUTTON_DESIN)) {
+					tpl.add(this.addButtonDesin(line));
 				} else {
 					tpl.add(line);
 				}
 			}
-//			MessageUtils.debug(tpl.toString());
+
 			MessageUtils.info("PROCESANDO PLANTILLA PARA ARCHIVO: " + fileName);
 
 			ffr.close();
@@ -324,6 +384,13 @@ public class HTMLBody {
 		return tpl;
 	}
 
+	/**
+	 * @param in String
+	 *
+	 * @return String
+	 *
+	 * @throws IOException
+	 */
 	public String convertToXML(String in) throws IOException {
 		BufferedWriter out = null;
 		String path = "";
@@ -346,6 +413,4 @@ public class HTMLBody {
 
 		return path;
 	}
-
-
 }
