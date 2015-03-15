@@ -19,6 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import org.jdom.JDOMException;
 
+/**
+ *
+ * @author Maze
+ */
 public class HTMLBody {
 
     private String dirIn;
@@ -30,6 +34,13 @@ public class HTMLBody {
     private String urlClick;
     private ArrayList<String> listFiles;
 
+    /**
+     *
+     * @param dirIn
+     * @param dirOut
+     * @param dirJrn
+     * @param dirTpl
+     */
     public HTMLBody(String dirIn, String dirOut, String dirJrn, String dirTpl) {
         this.dirIn = dirIn;
         this.dirOut = dirOut;
@@ -41,82 +52,157 @@ public class HTMLBody {
         this.listFiles = new ArrayList<String>();
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDirIn() {
         return dirIn;
     }
 
+    /**
+     *
+     * @param dirIn
+     */
     public void setDirIn(String dirIn) {
         this.dirIn = dirIn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDirOut() {
         return dirOut;
     }
 
+    /**
+     *
+     * @param dirOut
+     */
     public void setDirOut(String dirOut) {
         this.dirOut = dirOut;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDirJrn() {
         return dirJrn;
     }
 
+    /**
+     *
+     * @param dirJrn
+     */
     public void setDirJrn(String dirJrn) {
         this.dirJrn = dirJrn;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDirTpl() {
         return dirTpl;
     }
 
+    /**
+     *
+     * @param dirTpl
+     */
     public void setDirTpl(String dirTpl) {
         this.dirTpl = dirTpl;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<String> getListFiles() {
         return listFiles;
     }
 
+    /**
+     *
+     * @param listFiles
+     */
     public void setListFiles(ArrayList<String> listFiles) {
         this.listFiles = listFiles;
     }
 
+    /**
+     *
+     */
     public void clearListFiles() {
         if (!this.getListFiles().isEmpty()) {
             this.getListFiles().clear();
         }
     }
 
+    /**
+     *
+     * @param value
+     */
     public void addListFiles(String value) {
         if (!value.isEmpty()) {
             this.getListFiles().add(value.trim());
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public String getDocInstanceId() {
         return docInstanceId;
     }
 
+    /**
+     *
+     * @param docInstanceId
+     */
     public void setDocInstanceId(String docInstanceId) {
         this.docInstanceId = docInstanceId;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUrlRead() {
         return urlRead;
     }
 
+    /**
+     *
+     * @param urlRead
+     */
     public void setUrlRead(String urlRead) {
         this.urlRead = urlRead;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getUrlClick() {
         return urlClick;
     }
 
+    /**
+     *
+     * @param urlClick
+     */
     public void setUrlClick(String urlClick) {
         this.urlClick = urlClick;
     }
 
+    /**
+     *
+     * @throws IOException
+     */
     public void process() throws IOException {
         List<String> list = FileUtils.readDirectory(this.getDirIn(), Text.HTML_EXT);
 
@@ -144,8 +230,13 @@ public class HTMLBody {
         }
     }
 
+    /**
+     *
+     * @param in
+     * @throws IOException
+     */
     public void formatFile(String in) throws IOException {
-        FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.UTF_8, 1024 * 40);
+        FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.ISO_8859_1, 1024 * 40);
         String line;
 
         while ((line = ffr.readLine()) != null) {
@@ -165,6 +256,11 @@ public class HTMLBody {
 
     }
 
+    /**
+     *
+     * @param line
+     * @return
+     */
     public Boolean isDocId(String line) {
         String l = line.trim();
         if (l.startsWith(Text.COMMENT) && l.endsWith(Text.COMMENT_FINAL)) {
@@ -178,6 +274,11 @@ public class HTMLBody {
         return false;
     }
 
+    /**
+     *
+     * @param line
+     * @return
+     */
     public Boolean isUrlClick(String line) {
         if (line.trim().toLowerCase().contains(Text.LINK) && line.trim().contains(Text.F_LINK)) {
             this.setUrlClick(this.getUrlButtonClick(line));
@@ -187,6 +288,11 @@ public class HTMLBody {
         return false;
     }
 
+    /**
+     *
+     * @param line
+     * @return
+     */
     public Boolean isUrlRead(String line) {
         if (line.trim().toLowerCase().contains(Text.LINK) && line.trim().contains(Text.F_IMAGE)) {
             this.setUrlRead(this.getUrlReadServlet(line));
@@ -213,6 +319,10 @@ public class HTMLBody {
         return array2[1].split("\">")[0];
     }
 
+    /**
+     *
+     * @return
+     */
     public int getTemplate() {
         int template = 0;
         DB d = new DB();
@@ -231,6 +341,10 @@ public class HTMLBody {
         return template;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getJrnData() {
         List<String> data = new ArrayList<String>();
         Content content;
@@ -272,8 +386,15 @@ public class HTMLBody {
         return data;
     }
 
+    /**
+     *
+     * @param in
+     * @param template
+     * @return
+     * @throws IOException
+     */
     public Boolean generateBody(String in, int template) throws IOException {
-        FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.UTF_8, 1024 * 40);
+        FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.ISO_8859_1, 1024 * 40);
         List<String> tpl = new ArrayList<String>();
         String line;
         while ((line = ffr.readLine()) != null) {
@@ -298,6 +419,12 @@ public class HTMLBody {
         return FileUtils.writeFile(in, this.getDirOut(), tpl);
     }
 
+    /**
+     *
+     * @param line
+     * @param tpl
+     * @return
+     */
     public String addButton(String line, int tpl) {
         String[] btn = line.split("#");
 
@@ -311,6 +438,11 @@ public class HTMLBody {
         return b;
     }
 
+    /**
+     *
+     * @param line
+     * @return
+     */
     public String addButtonDesin(String line) {
         String site = Configuracion.getInstance().getInitParameter("dominioDesinscrito");
         String[] url = this.getUrlClick().trim().split("\\?");
@@ -333,15 +465,25 @@ public class HTMLBody {
         return b;
     }
 
+    /**
+     *
+     * @return
+     */
     public String addReadServlet() {
         return Text.IMAGE + this.getUrlRead() + Text.IMAGE_FINAL;
     }
 
+    /**
+     *
+     * @param template
+     * @return
+     * @throws IOException
+     */
     public List<String> getBodyContent(int template) throws IOException {
         String fileName = this.getDirTpl().concat(File.separator).concat(Text.PREFIX_TPL).concat(String.valueOf(template)).concat(Text.HTML_EXT);
         List<String> tpl = new ArrayList<String>();
         try {
-            FastFileTextReader ffr = new FastFileTextReader(fileName, FastFileTextReader.UTF_8, 1024 * 40);
+            FastFileTextReader ffr = new FastFileTextReader(fileName, FastFileTextReader.ISO_8859_1, 1024 * 40);
             String line;
 
             while ((line = ffr.readLine()) != null) {
@@ -367,11 +509,17 @@ public class HTMLBody {
         return tpl;
     }
 
+    /**
+     *
+     * @param in
+     * @return
+     * @throws IOException
+     */
     public String convertToXML(String in) throws IOException {
         BufferedWriter out = null;
         String path = "";
         try {
-            FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.UTF_8, 1024 * 40);
+            FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.ISO_8859_1, 1024 * 40);
             path = this.getDirOut().concat(File.separator).concat("Amicar.xml");
             out = new BufferedWriter(new FileWriter(path));
 
@@ -390,6 +538,11 @@ public class HTMLBody {
         return path;
     }
 
+    /**
+     *
+     * @param path
+     * @return
+     */
     public String searchJRN(String path) {
         List<String> list = FileUtils.readDirectory(path, Text.JRN_EXT);
         String namefile = null;

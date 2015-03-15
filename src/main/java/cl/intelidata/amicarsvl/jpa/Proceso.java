@@ -59,65 +59,128 @@ public class Proceso implements Serializable {
     @ManyToOne(optional = false)
     private Clientes clientesidCliente;
 
+    /**
+     *
+     */
     public Proceso() {
     }
 
+    /**
+     *
+     * @param idProceso
+     */
     public Proceso(Integer idProceso) {
         this.idProceso = idProceso;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdProceso() {
         return idProceso;
     }
 
+    /**
+     *
+     * @param idProceso
+     */
     public void setIdProceso(Integer idProceso) {
         this.idProceso = idProceso;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFechaEnvio() {
         return fechaEnvio;
     }
 
+    /**
+     *
+     * @param fechaEnvio
+     */
     public void setFechaEnvio(Date fechaEnvio) {
         this.fechaEnvio = fechaEnvio;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFechaAperturaMail() {
         return fechaAperturaMail;
     }
 
+    /**
+     *
+     * @param fechaAperturaMail
+     */
     public void setFechaAperturaMail(Date fechaAperturaMail) {
         this.fechaAperturaMail = fechaAperturaMail;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFechaClickLink() {
         return fechaClickLink;
     }
 
+    /**
+     *
+     * @param fechaClickLink
+     */
     public void setFechaClickLink(Date fechaClickLink) {
         this.fechaClickLink = fechaClickLink;
     }
 
+    /**
+     *
+     * @return
+     */
     public Vendedores getVendedoresidVendedor() {
         return vendedoresidVendedor;
     }
 
+    /**
+     *
+     * @param vendedoresidVendedor
+     */
     public void setVendedoresidVendedor(Vendedores vendedoresidVendedor) {
         this.vendedoresidVendedor = vendedoresidVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Ejecutivos getEjecutivosidEjecutivo() {
         return ejecutivosidEjecutivo;
     }
 
+    /**
+     *
+     * @param ejecutivosidEjecutivo
+     */
     public void setEjecutivosidEjecutivo(Ejecutivos ejecutivosidEjecutivo) {
         this.ejecutivosidEjecutivo = ejecutivosidEjecutivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Clientes getClientesidCliente() {
         return clientesidCliente;
     }
 
+    /**
+     *
+     * @param clientesidCliente
+     */
     public void setClientesidCliente(Clientes clientesidCliente) {
         this.clientesidCliente = clientesidCliente;
     }

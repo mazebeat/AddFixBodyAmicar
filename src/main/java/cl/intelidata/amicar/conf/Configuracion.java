@@ -7,18 +7,25 @@ import java.util.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ *
+ * @author Maze
+ */
 public class Configuracion {
 
     private Properties datos;
     private String nameFileConf;
     private static Configuracion conf = null;
+
+    /**
+     *
+     */
     public static Logger logger = LoggerFactory.getLogger(Configuracion.class);
 
     /**
      * *
      * Para ser utilizado dentro de una app standalone
      *
-     * @param nameFileConfiguracion
      * @return
      */
     public static Configuracion getInstance() {
@@ -48,6 +55,11 @@ public class Configuracion {
         datos.load(new FileInputStream(nameFileConf));
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public String getInitParameter(String name) {
 
         if (!datos.containsKey(name.toLowerCase())) {
@@ -59,6 +71,11 @@ public class Configuracion {
         return valor;
     }
 
+    /**
+     *
+     * @param key
+     * @param value
+     */
     public void setInitParameter(String key, String value) {
         datos.put(key.toLowerCase(), value);
 

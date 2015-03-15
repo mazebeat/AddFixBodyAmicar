@@ -43,41 +43,80 @@ public class Locales implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "localesidLocal1")
     private List<Ejecutivos> ejecutivosList;
 
+    /**
+     *
+     */
     public Locales() {
     }
 
+    /**
+     *
+     * @param idLocal
+     */
     public Locales(Integer idLocal) {
         this.idLocal = idLocal;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdLocal() {
         return idLocal;
     }
 
+    /**
+     *
+     * @param idLocal
+     */
     public void setIdLocal(Integer idLocal) {
         this.idLocal = idLocal;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombreLocal() {
         return nombreLocal;
     }
 
+    /**
+     *
+     * @param nombreLocal
+     */
     public void setNombreLocal(String nombreLocal) {
         this.nombreLocal = nombreLocal;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Vendedores> getVendedoresList() {
         return vendedoresList;
     }
 
+    /**
+     *
+     * @param vendedoresList
+     */
     public void setVendedoresList(List<Vendedores> vendedoresList) {
         this.vendedoresList = vendedoresList;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Ejecutivos> getEjecutivosList() {
         return ejecutivosList;
     }
 
+    /**
+     *
+     * @param ejecutivosList
+     */
     public void setEjecutivosList(List<Ejecutivos> ejecutivosList) {
         this.ejecutivosList = ejecutivosList;
     }

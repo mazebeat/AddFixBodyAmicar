@@ -26,6 +26,10 @@ public class EntityHelper {
         entityManagerFactory = Persistence.createEntityManagerFactory("AddfixbodyPU", propiedades);
     }
 
+    /**
+     *
+     * @return @throws Exception
+     */
     public static EntityHelper getInstance() throws Exception {
         if (entityHelper == null) {
             entityHelper = new EntityHelper();
@@ -39,6 +43,7 @@ public class EntityHelper {
      * mas de una satura las conexiones a la BD
      *
      * @return EntityManagerFactory
+     * @throws java.lang.Exception
      */
     public EntityManager getEntityManager() throws Exception {
         return entityManagerFactory.createEntityManager();

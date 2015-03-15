@@ -36,33 +36,64 @@ public class Clientealgoritmo implements Serializable {
     @Column(name = "idBody")
     private Integer idBody;
 
+    /**
+     *
+     */
     public Clientealgoritmo() {
     }
 
+    /**
+     *
+     * @param idClienteAlgoritmo
+     */
     public Clientealgoritmo(Integer idClienteAlgoritmo) {
         this.idClienteAlgoritmo = idClienteAlgoritmo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdClienteAlgoritmo() {
         return idClienteAlgoritmo;
     }
 
+    /**
+     *
+     * @param idClienteAlgoritmo
+     */
     public void setIdClienteAlgoritmo(Integer idClienteAlgoritmo) {
         this.idClienteAlgoritmo = idClienteAlgoritmo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdCliente() {
         return idCliente;
     }
 
+    /**
+     *
+     * @param idCliente
+     */
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdBody() {
         return idBody;
     }
 
+    /**
+     *
+     * @param idBody
+     */
     public void setIdBody(Integer idBody) {
         this.idBody = idBody;
     }

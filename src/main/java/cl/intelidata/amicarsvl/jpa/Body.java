@@ -33,25 +33,48 @@ public class Body implements Serializable {
     @Column(name = "bodyNombre")
     private String bodyNombre;
 
+    /**
+     *
+     */
     public Body() {
     }
 
+    /**
+     *
+     * @param idBody
+     */
     public Body(Integer idBody) {
         this.idBody = idBody;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdBody() {
         return idBody;
     }
 
+    /**
+     *
+     * @param idBody
+     */
     public void setIdBody(Integer idBody) {
         this.idBody = idBody;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getBodyNombre() {
         return bodyNombre;
     }
 
+    /**
+     *
+     * @param bodyNombre
+     */
     public void setBodyNombre(String bodyNombre) {
         this.bodyNombre = bodyNombre;
     }

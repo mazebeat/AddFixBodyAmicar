@@ -9,6 +9,9 @@ public class MCrypt {
     private javax.crypto.spec.SecretKeySpec keyspec;
     private javax.crypto.Cipher cipher;
 
+    /**
+     *
+     */
     public MCrypt() {
         this.ivspec = new javax.crypto.spec.IvParameterSpec(Text.IV.getBytes());
 
@@ -16,11 +19,9 @@ public class MCrypt {
 
         try {
             this.cipher = javax.crypto.Cipher.getInstance("AES/CBC/NoPadding");
-        }
-        catch (java.security.NoSuchAlgorithmException e) {
+        } catch (java.security.NoSuchAlgorithmException e) {
             e.printStackTrace();
-        }
-        catch (javax.crypto.NoSuchPaddingException e) {
+        } catch (javax.crypto.NoSuchPaddingException e) {
             e.printStackTrace();
         }
     }
@@ -145,8 +146,7 @@ public class MCrypt {
             this.getCipher().init(javax.crypto.Cipher.ENCRYPT_MODE, this.getKeyspec(), this.getIvspec());
 
             encrypted = this.getCipher().doFinal(padString(text).getBytes());
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("[encrypt] " + e.getMessage());
         }
 
@@ -171,8 +171,7 @@ public class MCrypt {
             this.getCipher().init(javax.crypto.Cipher.DECRYPT_MODE, this.getKeyspec(), this.getIvspec());
 
             decrypted = this.getCipher().doFinal(hexToBytes(code));
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             throw new Exception("[decrypt] " + e.getMessage());
         }
         return decrypted;

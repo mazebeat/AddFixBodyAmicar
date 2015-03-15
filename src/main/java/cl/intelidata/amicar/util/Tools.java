@@ -7,10 +7,21 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Maze
+ */
 public class Tools {
 
+    /**
+     *
+     */
     public static final Logger LOGGER = Logger.getLogger(Tools.class.getName());
 
+    /**
+     *
+     * @return
+     */
     public static Timestamp nowDate() {
         logger.info("GET DATE");
         Date fecha = new Date();
@@ -19,6 +30,12 @@ public class Tools {
         return time;
     }
 
+    /**
+     *
+     * @param urlBase
+     * @param params
+     * @return
+     */
     public static String fullURL(String urlBase, HashMap<String, String> params) {
         logger.info("CREATE URL TO ", urlBase);
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -33,6 +50,11 @@ public class Tools {
         return urlBase;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public static String desencryptInput(String input) {
         String decrypted = null;
         try {
@@ -46,6 +68,11 @@ public class Tools {
         return decrypted;
     }
 
+    /**
+     *
+     * @param input
+     * @return
+     */
     public static String encryptInputs(String input) {
         String encrypted = null;
         try {

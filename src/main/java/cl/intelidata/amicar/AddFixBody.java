@@ -4,8 +4,16 @@ import static cl.intelidata.amicar.conf.Configuracion.logger;
 import cl.intelidata.amicar.util.Text;
 import java.io.IOException;
 
+/**
+ *
+ * @author Maze
+ */
 public class AddFixBody implements Text {
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
         if (args.length < 4) {
             logger.error("CANTIDAD INVALIDA DE ARGUMENTOS - [DIR_ENTRADA] [DIR_SALIDA] [JRN_FILE] [DIR_TEMPLATES]");

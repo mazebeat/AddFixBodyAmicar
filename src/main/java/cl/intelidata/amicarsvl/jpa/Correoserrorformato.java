@@ -76,121 +76,240 @@ public class Correoserrorformato implements Serializable {
     @Column(name = "nombreJrn")
     private String nombreJrn;
 
+    /**
+     *
+     */
     public Correoserrorformato() {
     }
 
+    /**
+     *
+     * @param idCliente
+     */
     public Correoserrorformato(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdCliente() {
         return idCliente;
     }
 
+    /**
+     *
+     * @param idCliente
+     */
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRutCliente() {
         return rutCliente;
     }
 
+    /**
+     *
+     * @param rutCliente
+     */
     public void setRutCliente(String rutCliente) {
         this.rutCliente = rutCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getEmailCliente() {
         return emailCliente;
     }
 
+    /**
+     *
+     * @param emailCliente
+     */
     public void setEmailCliente(String emailCliente) {
         this.emailCliente = emailCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombreCliente() {
         return nombreCliente;
     }
 
+    /**
+     *
+     * @param nombreCliente
+     */
     public void setNombreCliente(String nombreCliente) {
         this.nombreCliente = nombreCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFonoCelular() {
         return fonoCelular;
     }
 
+    /**
+     *
+     * @param fonoCelular
+     */
     public void setFonoCelular(String fonoCelular) {
         this.fonoCelular = fonoCelular;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFonoComercial() {
         return fonoComercial;
     }
 
+    /**
+     *
+     * @param fonoComercial
+     */
     public void setFonoComercial(String fonoComercial) {
         this.fonoComercial = fonoComercial;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFonoParticular() {
         return fonoParticular;
     }
 
+    /**
+     *
+     * @param fonoParticular
+     */
     public void setFonoParticular(String fonoParticular) {
         this.fonoParticular = fonoParticular;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getMarcaAuto() {
         return marcaAuto;
     }
 
+    /**
+     *
+     * @param marcaAuto
+     */
     public void setMarcaAuto(String marcaAuto) {
         this.marcaAuto = marcaAuto;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getModeloAuto() {
         return modeloAuto;
     }
 
+    /**
+     *
+     * @param modeloAuto
+     */
     public void setModeloAuto(String modeloAuto) {
         this.modeloAuto = modeloAuto;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getValorAuto() {
         return valorAuto;
     }
 
+    /**
+     *
+     * @param valorAuto
+     */
     public void setValorAuto(String valorAuto) {
         this.valorAuto = valorAuto;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdGrupo() {
         return idGrupo;
     }
 
+    /**
+     *
+     * @param idGrupo
+     */
     public void setIdGrupo(Integer idGrupo) {
         this.idGrupo = idGrupo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdBody() {
         return idBody;
     }
 
+    /**
+     *
+     * @param idBody
+     */
     public void setIdBody(Integer idBody) {
         this.idBody = idBody;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFecha() {
         return fecha;
     }
 
+    /**
+     *
+     * @param fecha
+     */
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombreJrn() {
         return nombreJrn;
     }
 
+    /**
+     *
+     * @param nombreJrn
+     */
     public void setNombreJrn(String nombreJrn) {
         this.nombreJrn = nombreJrn;
     }

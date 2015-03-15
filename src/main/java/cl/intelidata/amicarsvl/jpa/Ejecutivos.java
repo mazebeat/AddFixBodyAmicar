@@ -59,65 +59,128 @@ public class Ejecutivos implements Serializable {
     @ManyToOne(optional = false)
     private Locales localesidLocal1;
 
+    /**
+     *
+     */
     public Ejecutivos() {
     }
 
+    /**
+     *
+     * @param idEjecutivo
+     */
     public Ejecutivos(Integer idEjecutivo) {
         this.idEjecutivo = idEjecutivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdEjecutivo() {
         return idEjecutivo;
     }
 
+    /**
+     *
+     * @param idEjecutivo
+     */
     public void setIdEjecutivo(Integer idEjecutivo) {
         this.idEjecutivo = idEjecutivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombreEjecutivo() {
         return nombreEjecutivo;
     }
 
+    /**
+     *
+     * @param nombreEjecutivo
+     */
     public void setNombreEjecutivo(String nombreEjecutivo) {
         this.nombreEjecutivo = nombreEjecutivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getCorreoEjecutivo() {
         return correoEjecutivo;
     }
 
+    /**
+     *
+     * @param correoEjecutivo
+     */
     public void setCorreoEjecutivo(String correoEjecutivo) {
         this.correoEjecutivo = correoEjecutivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFechaIngreso() {
         return fechaIngreso;
     }
 
+    /**
+     *
+     * @param fechaIngreso
+     */
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getFechaModificacion() {
         return fechaModificacion;
     }
 
+    /**
+     *
+     * @param fechaModificacion
+     */
     public void setFechaModificacion(String fechaModificacion) {
         this.fechaModificacion = fechaModificacion;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Proceso> getProcesoList() {
         return procesoList;
     }
 
+    /**
+     *
+     * @param procesoList
+     */
     public void setProcesoList(List<Proceso> procesoList) {
         this.procesoList = procesoList;
     }
 
+    /**
+     *
+     * @return
+     */
     public Locales getLocalesidLocal1() {
         return localesidLocal1;
     }
 
+    /**
+     *
+     * @param localesidLocal1
+     */
     public void setLocalesidLocal1(Locales localesidLocal1) {
         this.localesidLocal1 = localesidLocal1;
     }

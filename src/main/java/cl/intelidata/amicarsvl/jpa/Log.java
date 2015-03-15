@@ -46,49 +46,96 @@ public class Log implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaLog;
 
+    /**
+     *
+     */
     public Log() {
     }
 
+    /**
+     *
+     * @param idlog
+     */
     public Log(Integer idlog) {
         this.idlog = idlog;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdlog() {
         return idlog;
     }
 
+    /**
+     *
+     * @param idlog
+     */
     public void setIdlog(Integer idlog) {
         this.idlog = idlog;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdVendedor() {
         return idVendedor;
     }
 
+    /**
+     *
+     * @param idVendedor
+     */
     public void setIdVendedor(Integer idVendedor) {
         this.idVendedor = idVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdCliente() {
         return idCliente;
     }
 
+    /**
+     *
+     * @param idCliente
+     */
     public void setIdCliente(Integer idCliente) {
         this.idCliente = idCliente;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdEjecutivo() {
         return idEjecutivo;
     }
 
+    /**
+     *
+     * @param idEjecutivo
+     */
     public void setIdEjecutivo(Integer idEjecutivo) {
         this.idEjecutivo = idEjecutivo;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFechaLog() {
         return fechaLog;
     }
 
+    /**
+     *
+     * @param fechaLog
+     */
     public void setFechaLog(Date fechaLog) {
         this.fechaLog = fechaLog;
     }

@@ -49,49 +49,96 @@ public class Vendedores implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "vendedoresidVendedor")
     private List<Proceso> procesoList;
 
+    /**
+     *
+     */
     public Vendedores() {
     }
 
+    /**
+     *
+     * @param idVendedor
+     */
     public Vendedores(Integer idVendedor) {
         this.idVendedor = idVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Integer getIdVendedor() {
         return idVendedor;
     }
 
+    /**
+     *
+     * @param idVendedor
+     */
     public void setIdVendedor(Integer idVendedor) {
         this.idVendedor = idVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRutVendedor() {
         return rutVendedor;
     }
 
+    /**
+     *
+     * @param rutVendedor
+     */
     public void setRutVendedor(String rutVendedor) {
         this.rutVendedor = rutVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getNombreVendedor() {
         return nombreVendedor;
     }
 
+    /**
+     *
+     * @param nombreVendedor
+     */
     public void setNombreVendedor(String nombreVendedor) {
         this.nombreVendedor = nombreVendedor;
     }
 
+    /**
+     *
+     * @return
+     */
     public Locales getLocalesidLocal() {
         return localesidLocal;
     }
 
+    /**
+     *
+     * @param localesidLocal
+     */
     public void setLocalesidLocal(Locales localesidLocal) {
         this.localesidLocal = localesidLocal;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<Proceso> getProcesoList() {
         return procesoList;
     }
 
+    /**
+     *
+     * @param procesoList
+     */
     public void setProcesoList(List<Proceso> procesoList) {
         this.procesoList = procesoList;
     }

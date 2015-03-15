@@ -17,6 +17,10 @@ import javax.persistence.Query;
  */
 public class DB {
 
+    /**
+     *
+     * @param args
+     */
     public static void example(String... args) {
 
         /**
@@ -173,22 +177,51 @@ public class DB {
         }
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Clientes getCliente(Integer id) throws Exception {
         return this.client(id);
     }
 
+    /**
+     *
+     * @param rutCliente
+     * @param emailCliente
+     * @return
+     */
     public Clientesdiario buscarCliente(String rutCliente, String emailCliente) {
         return this.searchCliente(rutCliente, emailCliente);
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws Exception
+     */
     public Proceso getProceso(Integer id) throws Exception {
         return this.process(id);
     }
 
+    /**
+     *
+     * @param proceso
+     * @param queFecha
+     * @throws Exception
+     */
     public void actualizarProceso(Proceso proceso, char queFecha) throws Exception {
         this.updateProcess(proceso, queFecha);
     }
 
+    /**
+     *
+     * @param cliente
+     * @throws Exception
+     */
     public void actualizarCliente(Clientes cliente) throws Exception {
         this.updateClient(cliente);
     }
