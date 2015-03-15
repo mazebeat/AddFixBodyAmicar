@@ -157,7 +157,7 @@ public class HTMLBody {
         int template = this.getTemplate();
         if (template != 0) {
             if (!this.generateBody(in, template)) {
-                logger.error("NO SE LOGRÓ GENERAR EL ARCHIVO: ".concat(in));
+                logger.error("NO SE LOGRÓ GENERAR EL ARCHIVO: {}", in);
             }
         }
 
@@ -286,7 +286,7 @@ public class HTMLBody {
                 if (list.size() > 0) {
                     tpl.addAll(list);
                 } else {
-                    logger.warn("NO SE GENERO BODY PARA EL ARCHIVO: " + in);
+                    logger.warn("NO SE GENERO BODY PARA EL ARCHIVO: {}", in);
                 }
             } else {
                 tpl.add(line);
@@ -324,7 +324,7 @@ public class HTMLBody {
         if (!site.trim().endsWith("?")) {
             site = site.trim().concat("?");
         }
-        
+
         if (!params.contains("action")) {
             String msg = Tools.encryptInputs("removeSends");
             params = params.concat("&action=").concat(msg);
@@ -349,7 +349,7 @@ public class HTMLBody {
             String line;
 
             while ((line = ffr.readLine()) != null) {
-                    if (line.trim().startsWith(Text.F_BUTTON_COTIZ)) {
+                if (line.trim().startsWith(Text.F_BUTTON_COTIZ)) {
                     String l = this.addButton(line.trim(), template);
                     tpl.add(l);
                 } else if (line.trim().startsWith(Text.F_BUTTON_DESIN)) {
@@ -360,12 +360,12 @@ public class HTMLBody {
                 }
             }
 
-            logger.info("PROCESANDO PLANTILLA PARA ARCHIVO: " + fileName);
+            logger.info("PROCESANDO PLANTILLA PARA ARCHIVO: {}", fileName);
 
             ffr.close();
         } catch (IOException e) {
-            logger.warn("NO SE ENCUENTRA ARCHIVO: " + fileName);
-            logger.error(e.getMessage());
+            logger.warn("NO SE ENCUENTRA ARCHIVO: {}", fileName);
+            logger.error(e.getMessage() + " {}", e);
         }
 
         return tpl;
@@ -399,11 +399,11 @@ public class HTMLBody {
         String namefile = null;
 
         if (list.size() > 1) {
-            logger.warn("SE HA ENCONTRADO MAS DE UN ARCHIVO JRN EN EL DIRECTORIO ESPEFICICADO", path);
+            logger.warn("SE HA ENCONTRADO MAS DE UN ARCHIVO JRN EN EL DIRECTORIO ESPEFICICADO {}", path);
         } else {
             for (String f : list) {
                 namefile = path.concat(File.separator).concat(f);
-                logger.info("ARCHIVO JRN ENCONTRADO", namefile);
+                logger.info("ARCHIVO JRN ENCONTRADO {}", namefile);
             }
         }
 

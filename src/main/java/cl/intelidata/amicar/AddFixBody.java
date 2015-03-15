@@ -14,7 +14,7 @@ public class AddFixBody implements Text {
         logger.info("INICIANDO APLICACION");
         logger.info("ARGUMENTOS UTILIZADOS EN LA CONSULTA");
         for (int i = 0; i < args.length; i++) {
-            logger.debug("ARGUMENTO " + i + ": " + args[i]);
+            logger.debug("ARGUMENTO {}: {} ", i, args[i]);
         }
         logger.info("INICIANDO PROCESO");
         try {
