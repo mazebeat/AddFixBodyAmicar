@@ -295,11 +295,7 @@ public class HTMLBody {
 
         ffr.close();
 
-        if (FileUtils.writeFile(in, this.getDirOut(), tpl)) {
-            return true;
-        }
-
-        return false;
+        return FileUtils.writeFile(in, this.getDirOut(), tpl);
     }
 
     public String addButton(String line, int tpl) {
