@@ -1,4 +1,4 @@
-package cl.intelidata.amicar;
+package cl.intelidata.amicar.componente;
 
 import cl.intelidata.amicar.conf.Configuracion;
 import cl.intelidata.amicar.jpa.Clientesdiario;

@@ -1,5 +1,6 @@
 package cl.intelidata.amicar;
 
+import cl.intelidata.amicar.componente.HTMLBody;
 import cl.intelidata.amicar.conf.Configuracion;
 import cl.intelidata.amicar.util.Text;
 

@@ -1,4 +1,4 @@
-package cl.intelidata.amicar;
+package cl.intelidata.amicar.componente;
 
 import cl.intelidata.amicar.conf.EntityHelper;
 import cl.intelidata.amicar.jpa.Clientes;

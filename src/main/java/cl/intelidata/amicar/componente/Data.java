@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cl.intelidata.amicar;
+package cl.intelidata.amicar.componente;
 
 import java.util.ArrayList;
 
