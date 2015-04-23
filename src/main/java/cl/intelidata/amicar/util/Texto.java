@@ -3,7 +3,7 @@ package cl.intelidata.amicar.util;
 /**
  * @author Maze
  */
-public interface Text {
+public interface Texto {
 
 	/**
 	 * HTML VALUES

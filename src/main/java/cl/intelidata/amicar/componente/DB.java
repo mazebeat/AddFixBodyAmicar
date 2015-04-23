@@ -1,17 +1,18 @@
 package cl.intelidata.amicar.componente;
 
-import cl.intelidata.amicar.conf.EntityHelper;
-import cl.intelidata.amicar.jpa.Clientes;
-import cl.intelidata.amicar.jpa.Clientesdiario;
-import cl.intelidata.amicar.jpa.Proceso;
-import cl.intelidata.amicar.util.Tools;
+import static cl.intelidata.amicar.conf.Configuracion.logger;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cl.intelidata.amicar.conf.Configuracion.logger;
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import cl.intelidata.amicar.conf.EntityHelper;
+import cl.intelidata.amicar.db.Clientes;
+import cl.intelidata.amicar.db.Clientesdiario;
+import cl.intelidata.amicar.db.Proceso;
+import cl.intelidata.amicar.util.Tools;
 
 /**
  * @author Maze

@@ -13,9 +13,9 @@ public class MCrypt {
 	 *
 	 */
 	public MCrypt() {
-		this.ivspec = new javax.crypto.spec.IvParameterSpec(Text.IV.getBytes());
+		this.ivspec = new javax.crypto.spec.IvParameterSpec(Texto.IV.getBytes());
 
-		this.keyspec = new javax.crypto.spec.SecretKeySpec(Text.KEY.getBytes(), "AES");
+		this.keyspec = new javax.crypto.spec.SecretKeySpec(Texto.KEY.getBytes(), "AES");
 
 		try {
 			this.cipher = javax.crypto.Cipher.getInstance("AES/CBC/NoPadding");

@@ -1,16 +1,6 @@
 package cl.intelidata.amicar.componente;
 
-import cl.intelidata.amicar.conf.Configuracion;
-import cl.intelidata.amicar.jpa.Clientesdiario;
-import cl.intelidata.amicar.util.FileUtils;
-import cl.intelidata.amicar.util.Text;
-import cl.intelidata.amicar.util.Tools;
-import org.jam.superutils.FastFileTextReader;
-import org.jdom.Content;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
+import static cl.intelidata.amicar.conf.Configuracion.logger;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -19,7 +9,18 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static cl.intelidata.amicar.conf.Configuracion.logger;
+import org.jam.superutils.FastFileTextReader;
+import org.jdom.Content;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.input.SAXBuilder;
+
+import cl.intelidata.amicar.conf.Configuracion;
+import cl.intelidata.amicar.db.Clientesdiario;
+import cl.intelidata.amicar.util.FileUtils;
+import cl.intelidata.amicar.util.Texto;
+import cl.intelidata.amicar.util.Tools;
 
 /**
  * @author Maze
@@ -109,7 +110,7 @@ public class HTMLBody {
 	 * @throws IOException
 	 */
 	public void process() throws IOException {
-		List<String> list = FileUtils.readDirectory(this.getDirIn(), Text.HTML_EXT);
+		List<String> list = FileUtils.readDirectory(this.getDirIn(), Texto.HTML_EXT);
 
 		if (list.size() <= 0) {
 			System.out.println("NO HAY ARCHIVOS EN EL DIRECTORIO ESPECIFICADO");
@@ -142,7 +143,7 @@ public class HTMLBody {
 	 * @return
 	 */
 	public String searchJRN(String path) {
-		List<String> list = FileUtils.readDirectory(path, Text.JRN_EXT);
+		List<String> list = FileUtils.readDirectory(path, Texto.JRN_EXT);
 		String namefile = null;
 
 		if (list.size() > 1) {
@@ -168,7 +169,7 @@ public class HTMLBody {
 		BufferedWriter out = null;
 		String path = "";
 		try {
-			FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.ISO_8859_1, 1024 * 40);
+			FastFileTextReader ffr = new FastFileTextReader(in, FastFileTextReader.UTF_8, 1024 * 40);
 			path = this.getDirOut().concat(File.separator).concat("Amicar.xml");
 			out = new BufferedWriter(new FileWriter(path));
 
@@ -217,8 +218,8 @@ public class HTMLBody {
 
 	private Boolean isTitle(String line) {
 		String l = line.trim();
-		if (l.startsWith(Text.TITLEHTML) && l.endsWith(Text.TITLEHTML_FINAL)) {
-			String a = l.replace(Text.TITLEHTML, "").replace(Text.TITLEHTML_FINAL, "").trim();
+		if (l.startsWith(Texto.TITLEHTML) && l.endsWith(Texto.TITLEHTML_FINAL)) {
+			String a = l.replace(Texto.TITLEHTML, "").replace(Texto.TITLEHTML_FINAL, "").trim();
 			this.data.setTitle(a);
 			return true;
 		}
@@ -232,8 +233,8 @@ public class HTMLBody {
 	 */
 	public Boolean isDocId(String line) {
 		String l = line.trim();
-		if (l.startsWith(Text.COMMENT) && l.endsWith(Text.COMMENT_FINAL)) {
-			String a = l.replace(Text.COMMENT, "").replace(Text.COMMENT_FINAL, "").trim();
+		if (l.startsWith(Texto.COMMENT) && l.endsWith(Texto.COMMENT_FINAL)) {
+			String a = l.replace(Texto.COMMENT, "").replace(Texto.COMMENT_FINAL, "").trim();
 			if (a.length() == 32) {
 				this.data.setDocInstanceId(a);
 				return true;
@@ -248,7 +249,7 @@ public class HTMLBody {
 	 * @return
 	 */
 	public Boolean isUrlClick(String line) {
-		if (line.trim().toLowerCase().contains(Text.LINK) && line.trim().contains(Text.F_LINK)) {
+		if (line.trim().toLowerCase().contains(Texto.LINK) && line.trim().contains(Texto.F_LINK)) {
 			this.data.setUrlClick(this.getUrlButtonClick(line));
 			return true;
 		}
@@ -262,7 +263,7 @@ public class HTMLBody {
 	 * @return
 	 */
 	public Boolean isUrlRead(String line) {
-		if (line.trim().toLowerCase().contains(Text.LINK) && line.trim().contains(Text.F_IMAGE)) {
+		if (line.trim().toLowerCase().contains(Texto.LINK) && line.trim().contains(Texto.F_IMAGE)) {
 			this.data.setUrlRead(this.getUrlReadServlet(line));
 			return true;
 		}
@@ -277,8 +278,10 @@ public class HTMLBody {
 		DB d = new DB();
 		try {
 			List<String> data = this.getJrnData();
-
-			Clientesdiario result = d.buscarCliente(data.get(1), data.get(2));
+			String rut = data.get(1);
+			String email = data.get(2);
+			System.out.println(rut + " - " + email);
+			Clientesdiario result = d.buscarCliente(rut, email);
 
 			if (result != null) {
 				template = result.getIdBody();
@@ -299,26 +302,26 @@ public class HTMLBody {
 	 * @throws IOException
 	 */
 	public Boolean generateBody(String in, int template) throws IOException {
-		String fileName = this.getDirTpl().concat(File.separator).concat(Text.PREFIX_TPL).concat(String.valueOf(template)).concat(Text.HTML_EXT);
+		String fileName = this.getDirTpl().concat(File.separator).concat(Texto.PREFIX_TPL).concat(String.valueOf(template)).concat(Texto.HTML_EXT);
 		List<String> tpl = new ArrayList<String>();
 		try {
 			FastFileTextReader ffr = new FastFileTextReader(fileName, FastFileTextReader.ISO_8859_1, 1024 * 40);
 			String line;
 
 			while ((line = ffr.readLine()) != null) {
-				if (line.trim().contains(Text.DOCINSTID)) {
+				if (line.trim().contains(Texto.DOCINSTID)) {
 					String l = this.addDodId(line.trim());
 					tpl.add(l);
-				} else if (line.trim().contains(Text.TITLE)) {
+				} else if (line.trim().contains(Texto.TITLE)) {
 					String l = this.addTitle(line.trim());
 					tpl.add(l);
-				} else if (line.trim().contains(Text.BTN_CLICK)) {
+				} else if (line.trim().contains(Texto.BTN_CLICK)) {
 					String l = this.addBtnClick(line.trim(), template);
 					tpl.add(l);
-				} else if (line.trim().contains(Text.BTN_DESINSCRITO)) {
+				} else if (line.trim().contains(Texto.BTN_DESINSCRITO)) {
 					String l = this.addBtnDesinscrito(line.trim());
 					tpl.add(l);
-				} else if (line.trim().contains(Text.BTN_LECTURAS)) {
+				} else if (line.trim().contains(Texto.BTN_LECTURAS)) {
 					String l = this.addBtnLecturas(line.trim());
 					tpl.add(l);
 				} else {
@@ -343,7 +346,7 @@ public class HTMLBody {
          * @return 
          */
 	private String getUrlButtonClick(String line) {
-		String[] array = line.split(Text.F_LINK);
+		String[] array = line.split(Texto.F_LINK);
 		String[] array2 = array[0].split("title=\"");
 
 		return array2[1].split("\">")[0];
@@ -355,11 +358,11 @@ public class HTMLBody {
 	 * @return
 	 */
 	private String getUrlReadServlet(String line) {
-		String[] array = line.split(Text.SERVLET_1);
+		String[] array = line.split(Texto.SERVLET_1);
 		String[] array2 = null;
 		for (int i = 0; i < array.length; i++) {
-			if (array[i].contains(Text.F_IMAGE)) {
-				array2 = array[i].split(Text.SERVLET_2);
+			if (array[i].contains(Texto.F_IMAGE)) {
+				array2 = array[i].split(Texto.SERVLET_2);
 			}
 		}
 		return array2[0];
@@ -374,6 +377,7 @@ public class HTMLBody {
 
 		SAXBuilder builder = new SAXBuilder();
 		File xmlFile = new File(this.getDirJrn());
+		
 		try {
 			Document document = (Document)builder.build(xmlFile);
 			Element rootNode = document.getRootElement();
@@ -392,8 +396,8 @@ public class HTMLBody {
 				String doc = node.getAttribute("docInstanceID").getValue();
 				if (doc.equalsIgnoreCase(this.data.getDocInstanceId())) {
 					for (int j = 0; j < node.getContent().size(); j++) {
-						content = node.getContent(j);
-						if (content.toString().contains("DDSDocValue") || content.toString().contains("AccNo")) {
+ 						content = node.getContent(j);
+   						if (content.toString().contains("DDSDocValue") || content.toString().contains("AccNo")) {
 							data.add(content.getValue());
 						}
 					}
@@ -415,7 +419,7 @@ public class HTMLBody {
          * @return 
          */
 	private String addDodId(String line) {
-		String btn = line.replace(Text.DOCINSTID, this.data.getDocInstanceId());
+		String btn = line.replace(Texto.DOCINSTID, this.data.getDocInstanceId());
 		return btn;
 	}
         
@@ -425,7 +429,7 @@ public class HTMLBody {
          * @return 
          */
 	private String addTitle(String line) {
-		String btn = line.replace(Text.TITLE, this.data.getTitle());
+		String btn = line.replace(Texto.TITLE, this.data.getTitle());
 		return btn;
 	}
 
@@ -444,7 +448,7 @@ public class HTMLBody {
 			this.data.setUrlClick(url);
 		}
 
-		String btn = line.replace(Text.BTN_CLICK, url);
+		String btn = line.replace(Texto.BTN_CLICK, url);
 		return btn;
 	}
 
@@ -463,13 +467,13 @@ public class HTMLBody {
 		}
 
 		if (!params.contains("action")) {
-			String msg = Tools.encryptInputs(Text.DESINS_KEY);
+			String msg = Tools.encryptInputs(Texto.DESINS_KEY);
 			params = params.concat("&amp;action=").concat(msg);
 		}
 
 		site = site.concat(params);
 
-		String btn = line.replace(Text.BTN_DESINSCRITO, site);
+		String btn = line.replace(Texto.BTN_DESINSCRITO, site);
                 
 		return btn;
 	}
@@ -480,7 +484,7 @@ public class HTMLBody {
          * @return 
          */
 	private String addBtnLecturas(String line) {
-		String btn = line.replace(Text.BTN_LECTURAS, this.data.getUrlRead());
+		String btn = line.replace(Texto.BTN_LECTURAS, this.data.getUrlRead());
 		return btn;
 	}
 

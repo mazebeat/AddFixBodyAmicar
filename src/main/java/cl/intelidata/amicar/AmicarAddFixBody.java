@@ -1,17 +1,16 @@
 package cl.intelidata.amicar;
 
-import cl.intelidata.amicar.componente.HTMLBody;
-import cl.intelidata.amicar.conf.Configuracion;
-import cl.intelidata.amicar.util.Text;
+import static cl.intelidata.amicar.conf.Configuracion.logger;
 
 import java.io.IOException;
 
-import static cl.intelidata.amicar.conf.Configuracion.logger;
+import cl.intelidata.amicar.componente.HTMLBody;
+import cl.intelidata.amicar.conf.Configuracion;
 
 /**
  * @author Maze
  */
-public class AddFixBody implements Text {
+public class AmicarAddFixBody {
 
 	/**
 	 * @param args

@@ -34,7 +34,7 @@
                             <archive>
                                 <manifest>
                                     <packageName>${project.artifactId}</packageName>
-                                    <mainClass>cl.intelidata.amicar.main.${project.artifactId}</mainClass>
+                                    <mainClass>cl.intelidata.amicar.${project.artifactId}</mainClass>
                                 </manifest>
                                 <manifestEntries>
                                     <Version>${project.version}</Version>
